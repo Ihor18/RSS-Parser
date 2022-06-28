@@ -17,9 +17,8 @@
 
 ```php artisan migrate```
 
-```php artisan db:seed```
+```php artisan parser:run```
 
-```php artisan storage:link```
 
 ##Run in Docker container
 
@@ -37,5 +36,5 @@
 
 ```docker-compose exec app php artisan migrate```
 
-```docker-compose exec app php artisan db:seed```
+```docker-compose exec app php artisan parser:run```
 
