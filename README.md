@@ -21,9 +21,12 @@
 
 ```php artisan parser:run```
 
- For CRON \
+ For cron \
 ```php artisan schedule:run```
 
+```npm install```
+
+```npm run dev```
 
 
 
