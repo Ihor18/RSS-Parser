@@ -1,7 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Str;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +14,13 @@ use Illuminate\Support\Str;
 |
 */
 
-Route::get('/', function () {
 
+
+Route::controller(\App\Http\Controllers\HomeController::class)->group(function (){
+    Route::get('/','index');
+    Route::get('post/{id}','index');
+    Route::get('create','index');
 });
+
+Auth::routes();
+

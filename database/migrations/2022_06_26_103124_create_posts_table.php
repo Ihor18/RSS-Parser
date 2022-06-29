@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('creator');
             $table->string('link');
             $table->text('description');
-            $table->string('pub_date');
+            $table->date('pub_date');
             $table->string('guid')->unique();
             $table->softDeletes();
             $table->timestamps();

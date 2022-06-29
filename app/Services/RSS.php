@@ -28,7 +28,7 @@ class RSS implements Parser
                     'creator' => $item->data['child']["http://purl.org/dc/elements/1.1/"]['creator'][0]['data'],
                     'link' => $item->data['child'][""]['link'][0]['data'],
                     'description' => $item->data['child'][""]['description'][0]['data'],
-                    'pub_date' => $item->data['child'][""]['pubDate'][0]['data'],
+                    'pub_date' => \Carbon\Carbon::parse($item->data['child'][""]['pubDate'][0]['data']),
                     'guid' => $item->data['child'][""]['guid'][0]['data']
                 ]);
 

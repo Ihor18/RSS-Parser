@@ -23,4 +23,5 @@ Route::apiResource('post',PostController::class);
 Route::controller(PostController::class)->prefix('post')->group(function (){
     Route::get('find/{name}','find');
     Route::post('filter','filter');
+    Route::get('sort/{field}','sort');
 });

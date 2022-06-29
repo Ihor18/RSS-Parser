@@ -17,7 +17,14 @@
 
 ```php artisan migrate```
 
+```php artisan migrate```
+
 ```php artisan parser:run```
+
+ For CRON \
+```php artisan schedule:run```
+
+
 
 
 ##Run in Docker container
@@ -36,5 +43,14 @@
 
 ```docker-compose exec app php artisan migrate```
 
+```docker-compose exec app php artisan db:seed```
+
 ```docker-compose exec app php artisan parser:run```
+
+For CRON \
+```docker-compose exec app php artisan schedule:run```
+
+Test user:\
+admin@admin.com \
+qwerty1234
 

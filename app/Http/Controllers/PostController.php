@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\FilterRequest;
 use App\Http\Requests\PostRequest;
+use App\Http\Requests\UpdatePostRequest;
 use App\Http\Resources\PostResource;
 use App\Models\Post;
 use App\Models\PostCategory;
@@ -57,7 +58,7 @@ class PostController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(PostRequest $request, Post $post)
+    public function update(UpdatePostRequest $request, Post $post)
     {
         try {
             $data = $request->validated();
@@ -86,18 +87,25 @@ class PostController extends Controller
         return response()->noContent();
     }
 
-    public function find(string $name)
+    public function find(string $name): \Illuminate\Http\Resources\Json\AnonymousResourceCollection
     {
-        $posts = Post::where('title', 'like', "%$name%")->orWhere('creator', 'like', "%$name%")->get();
+        $posts = Post::where('title', 'like', "%$name%")->orWhere('creator', 'like', "%$name%")->paginate(10);
+
+        return PostResource::collection($posts);
+    }
+
+    public function filter(FilterRequest $request): \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+    {
+        $categories = PostCategory::where('name', $request->category)->pluck('id')->toArray();
+        $posts = Post::find($categories);
 
         return PostResource::collection($posts->load('categories'));
     }
 
-    public function filter(FilterRequest $request)
+    public function sort(string $field)
     {
-        $categories =  PostCategory::where('name',$request->category)->pluck('id')->toArray();
-        $posts = Post::find($categories);
+        $posts = Post::orderBy($field)->paginate(10);
 
-        return PostResource::collection($posts->load('categories'));
+        return PostResource::collection($posts);
     }
 }
