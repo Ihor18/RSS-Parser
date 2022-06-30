@@ -21,14 +21,17 @@
 
 ```php artisan parser:run```
 
- For cron \
-```php artisan schedule:run```
+For Job chain
+
+```php artisan parser:run```
+
+```php artisan queue:work```
 
 ```npm install```
 
 ```npm run dev```
 
-
+_________________________________
 
 ##Run in Docker container
 
@@ -50,8 +53,15 @@
 
 ```docker-compose exec app php artisan parser:run```
 
-For CRON \
-```docker-compose exec app php artisan schedule:run```
+For Job chain 
+
+```docker-compose exec app php artisan parser:run```
+
+```docker-compose exec app php artisan queue:work```
+
+```npm install```
+
+```npm run dev```
 
 Test user:\
 admin@admin.com \

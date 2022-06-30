@@ -17,10 +17,12 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::controller(\App\Http\Controllers\HomeController::class)->group(function (){
-    Route::get('/','index');
+    Route::get('/','index')->name('app');
     Route::get('post/{id}','index');
     Route::get('create','index');
 });
-
+Route::get('/qwerty',function (){
+    echo url('/api/auth/login');
+});
 Auth::routes();
 

@@ -34,6 +34,8 @@
     </div>
 </template>
 <script>
+import api from "../api";
+
 export default {
     name: "App",
     mounted() {
@@ -57,13 +59,13 @@ export default {
     },
     methods: {
         async getPost() {
-            await axios
+            await api
                 .get(window.location.origin + '/api/post/' + this.$route.params.id)
                 .then(response => (this.post = response.data.data));
         },
         update(e) {
             e.preventDefault()
-            axios.put(window.location.origin + '/api/post/' + this.$route.params.id, this.post)
+            api.put(window.location.origin + '/api/post/' + this.$route.params.id, this.post)
                 .then(function (response) {
                         if (response.status === 200){
                             window.location.href = window.location.origin

@@ -38,6 +38,8 @@
 </template>
 
 <script>
+import api from "../api";
+
 export default {
     name: "CreatePost",
 
@@ -59,7 +61,7 @@ export default {
 
         create(e) {
             e.preventDefault()
-            axios.post(window.location.origin + '/api/post/', this.post)
+            api.post(window.location.origin + '/api/post/', this.post)
                 .then(function (response) {
                     if (response.status === 200) {
                         window.location.href = window.location.origin

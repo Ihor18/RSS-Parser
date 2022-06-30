@@ -17,7 +17,7 @@
         </div>
         <div class="text-center mt-3 mb-4 offset-2 col-2">
             <router-link :to="'/create'">
-            <button class="btn btn-success self-offset col-8" type="submit">Create post</button>
+                <button class="btn btn-success self-offset col-8" type="submit">Create post</button>
             </router-link>
         </div>
         <table class="table table-hover table-bordered">
@@ -31,7 +31,7 @@
             </tr>
             </thead>
             <tr v-for="(item,key) in list">
-                <th>{{ item.title }}</th>
+                <th v-html="item.title"></th>
                 <td><b>{{ item.creator }}</b></td>
                 <td><b>{{ item.link }}</b></td>
                 <td><b>{{ item.pub_date }}</b></td>
@@ -55,11 +55,13 @@
 </template>
 
 <script>
-import {list} from "postcss";
+import api from "../api";
 
 export default {
     name: "App",
     mounted() {
+        console.log(this.getCookie('access_token'))
+
         this.getPosts('/api/post/');
     },
     computed: {},
@@ -74,7 +76,7 @@ export default {
     methods: {
         async getPosts(url) {
             this.currentUrl = url
-            await axios
+            await api
                 .get(url)
                 .then(response => (this.response = response.data));
             this.list = this.response.data
@@ -82,7 +84,7 @@ export default {
         },
 
         removePost(id) {
-            axios.delete('/api/post/' + id);
+            api.delete('/api/post/' + id);
             this.getPosts(this.currentUrl);
         },
         findPosts() {
@@ -98,7 +100,13 @@ export default {
         sort(event) {
             let url = 'api/post/sort/' + event.target.value
             this.getPosts(url)
+        },
+        getCookie(name) {
+            const value = `; ${document.cookie}`;
+            const parts = value.split(`; ${name}=`);
+            if (parts.length === 2) return parts.pop().split(';').shift();
         }
+
     }
 }
 </script>
@@ -130,7 +138,8 @@ export default {
     border-radius: 5px;
     background-color: white;
 }
-.self-offset{
+
+.self-offset {
     margin-left: 41%;
 }
 </style>

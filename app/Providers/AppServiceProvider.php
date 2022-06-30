@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Interfaces\Parser;
+use App\Jobs\ParserJob;
 use App\Services\RSS;
 use Illuminate\Support\ServiceProvider;
 

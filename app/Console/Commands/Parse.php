@@ -2,7 +2,8 @@
 
 namespace App\Console\Commands;
 
-use App\Interfaces\Parser;
+
+use App\Jobs\ParserJob;
 use Illuminate\Console\Command;
 
 class Parse extends Command
@@ -26,8 +27,8 @@ class Parse extends Command
      *
      * @return int
      */
-    public function handle(Parser $parser)
+    public function handle()
     {
-        $parser->parse();
+        ParserJob::dispatch();
     }
 }
