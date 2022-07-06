@@ -17,9 +17,8 @@
 
 ```php artisan migrate```
 
-```php artisan migrate```
+```php artisan db:seed```
 
-```php artisan parser:run```
 
 For Job chain
 
@@ -51,7 +50,6 @@ _________________________________
 
 ```docker-compose exec app php artisan db:seed```
 
-```docker-compose exec app php artisan parser:run```
 
 For Job chain 
 
